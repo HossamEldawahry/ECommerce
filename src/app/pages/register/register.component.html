@@ -1,1 +1,50 @@
-<p>register works!</p>
+<section>
+  <div class="container">
+    <h1>Register</h1>
+    <form [formGroup]="registrationForm">
+      <!-- Username -->
+      <div class="field">
+        <p-inputgroup>
+        <p-inputgroup-addon>
+            <i class="pi pi-user"></i>
+        </p-inputgroup-addon>
+        <input pInputText formControlName="name" placeholder="Username" />
+    </p-inputgroup>
+
+      </div>
+      <!-- Email -->
+      <div class="field">
+        <p-inputgroup>
+        <p-inputgroup-addon>
+            <i class="pi pi-envelope"></i>
+        </p-inputgroup-addon>
+        <input pInputText formControlName="email" placeholder="Email" />
+    </p-inputgroup>
+
+      </div>
+      <!-- Password -->
+      <div class="field">
+        <p-inputgroup>
+        <p-inputgroup-addon>
+            <i class="pi pi-lock"></i>
+        </p-inputgroup-addon>
+        <input pInputText formControlName="password" placeholder="Password" />
+    </p-inputgroup>
+
+      </div>
+      <!-- Confirm Password -->
+      <div class="field">
+        <p-inputgroup>
+        <p-inputgroup-addon>
+            <i class="pi pi-lock"></i>
+        </p-inputgroup-addon>
+        <input pInputText formControlName="confirmPassword" placeholder="Confirm Password" />
+    </p-inputgroup>
+
+      </div>
+    <div class="card flex justify-center">
+    <p-button label="Submit" />
+</div>
+    </form>
+  </div>
+</section>
