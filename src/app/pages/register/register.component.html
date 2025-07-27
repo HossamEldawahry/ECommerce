@@ -1,16 +1,39 @@
-<section>
-  <div class="container">
-    <h1>Register</h1>
-    <form [formGroup]="registrationForm">
+<div class="card flex justify-center">
+    <p-toast />
+</div>
+<section class="my-8">
+  <div class="container my-8">
+    <h1 class="my-5 font-bold capitalize">Register</h1>
+    <form [formGroup]="registrationForm" (ngSubmit)="submitForm()">
       <!-- Username -->
       <div class="field">
         <p-inputgroup>
         <p-inputgroup-addon>
             <i class="pi pi-user"></i>
         </p-inputgroup-addon>
-        <input pInputText formControlName="name" placeholder="Username" />
+        <input pInputText formControlName="username" placeholder="Username" />
     </p-inputgroup>
-
+    @if(username.dirty && username.touched)
+    {
+      @if(username.getError('required'))
+      {
+        <div class="validation-msg my-3">
+          <p-message text="Username is required." severity="error"/>
+        </div>
+      }
+      @if(username.getError('minlength'))
+      {
+        <div class="validation-msg my-3">
+          <p-message text="Username must be at least 3 characters long." severity="error"/>
+        </div>
+      }
+      @if(username.getError('maxlength'))
+      {
+        <div class="validation-msg my-3">
+          <p-message text="Username cannot exceed 20 characters." severity="error"/>
+        </div>
+      }
+    }
       </div>
       <!-- Email -->
       <div class="field">
@@ -20,7 +43,21 @@
         </p-inputgroup-addon>
         <input pInputText formControlName="email" placeholder="Email" />
     </p-inputgroup>
-
+    @if(email.dirty && email.touched)
+    {
+      @if(email.getError('required'))
+      {
+        <div class="validation-msg my-3">
+          <p-message text="Email is required." severity="error"/>
+        </div>
+      }
+      @if(email.getError('email'))
+      {
+        <div class="validation-msg my-3">
+          <p-message text="Please enter a valid email address." severity="error"/>
+        </div>
+      }
+    }
       </div>
       <!-- Password -->
       <div class="field">
@@ -28,9 +65,23 @@
         <p-inputgroup-addon>
             <i class="pi pi-lock"></i>
         </p-inputgroup-addon>
-        <input pInputText formControlName="password" placeholder="Password" />
+        <input pInputText formControlName="password" placeholder="Password" type="password" />
     </p-inputgroup>
-
+    @if(password.dirty && password.touched)
+    {
+      @if(password.getError('required'))
+      {
+        <div class="validation-msg my-3">
+          <p-message text="Password is required." severity="error"/>
+        </div>
+      }
+      @if(password.getError('minlength'))
+      {
+        <div class="validation-msg my-3">
+          <p-message text="Password must be at least 6 characters long." severity="error"/>
+        </div>
+      }
+    }
       </div>
       <!-- Confirm Password -->
       <div class="field">
@@ -38,12 +89,32 @@
         <p-inputgroup-addon>
             <i class="pi pi-lock"></i>
         </p-inputgroup-addon>
-        <input pInputText formControlName="confirmPassword" placeholder="Confirm Password" />
+        <input pInputText formControlName="confirmPassword" placeholder="Confirm Password" type="password"  />
     </p-inputgroup>
-
+    @if(confirmPassword.dirty && confirmPassword.touched)
+    {
+      @if(confirmPassword.getError('required'))
+      {
+        <div class="validation-msg my-3">
+          <p-message text="Confirm Password is required." severity="error"/>
+        </div>
+      }
+      @if(confirmPassword.getError('minlength'))
+      {
+        <div class="validation-msg my-3">
+          <p-message text="Confirm Password must be at least 6 characters long." severity="error"/>
+        </div>
+      }
+      @if(confirmPassword.getError('passwordNotMismatch'))
+      {
+        <div class="validation-msg my-3">
+          <p-message text="Passwords do not match." severity="error"/>
+        </div>
+      }
+    }
       </div>
     <div class="card flex justify-center">
-    <p-button label="Submit" />
+    <p-button type="submit" label="Submit" />
 </div>
     </form>
   </div>
